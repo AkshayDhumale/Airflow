@@ -210,7 +210,7 @@ spec:
           app: aerospike
           component: pvc
       spec:
-        # storageClassName: aerospike-local
+        storageClassName: mydata
         accessModes: ["ReadWriteOnce"]
         volumeMode: Filesystem
         resources:
