@@ -1,0 +1,50 @@
+# #We are trying to start using Argocd to manage our k8s cluster. For the migration we have a single helm chart that we use for multiple microservices. To do a POC of the migration we have created a new repo that contains the chart and all the value files it will use. When declaring the App manifest for Argo we did this:
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: app-develop
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: "https://github.com/AkshayDhumale/Airflow.git"
+#     path: grafana
+#     targetRevision: HEAD
+#     chart: grafana
+#     helm:
+#       valueFiles:
+#         - values/override.yaml
+#       # parameters:
+#       #   - name: app
+#       #     value: app-develop
+#   destination:
+#     server: "https://kubernetes.default.svc"
+#     namespace: default
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: grafana-app
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/AkshayDhumale/Airflow.git
+#     targetRevision: main
+#     path: grafana
+#     helm:
+#       valueFiles:
+#         - override.yaml # Include the override.yaml
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: grafana-namespace
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
