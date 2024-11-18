@@ -209,8 +209,10 @@ spec:
         labels:
           app: aerospike
           component: pvc
+        annotations:
+          argocd.argoproj.io/sync-options: Delete=false
       spec:
-        storageClassName: mydata
+        # storageClassName: standard
         accessModes: ["ReadWriteOnce"]
         volumeMode: Filesystem
         resources:
