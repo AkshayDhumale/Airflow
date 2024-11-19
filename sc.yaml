@@ -1,9 +1,28 @@
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  annotations:
-    storageclass.kubernetes.io/is-default-class: "true"
-  name: mydata
-provisioner: k8s.io/minikube-hostpath
-reclaimPolicy: Retain
-volumeBindingMode: Immediate
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   annotations:
+#     storageclass.kubernetes.io/is-default-class: "true"
+#   name: mydata
+# provisioner: k8s.io/minikube-hostpath
+# reclaimPolicy: Retain
+# volumeBindingMode: Immediate
+# ---
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   annotations:
+#     cas.openebs.io/config: |
+#       - name: StorageType
+#         value: "hostpath"
+#       - name: BasePath
+#         value: "/var/openebs/local"
+#     meta.helm.sh/release-name: open-hp
+#     meta.helm.sh/release-namespace: openebs
+#     openebs.io/cas-type: local
+#   labels:
+#     app.kubernetes.io/managed-by: Helm
+#   name: openebs-hp
+# provisioner: openebs.io/local
+# reclaimPolicy: Retain
+# volumeBindingMode: WaitForFirstConsumer
