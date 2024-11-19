@@ -1,11 +1,11 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: aerospike
-  labels:
-    app: aerospike
-    component: ns
----
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: aerospike
+#   labels:
+#     app: aerospike
+#     component: ns
+# ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
