@@ -212,7 +212,7 @@ spec:
         annotations:
           argocd.argoproj.io/sync-options: Delete=false
       spec:
-        storageClassName: openebs-hp
+        # storageClassName: openebs-hp
         accessModes: ["ReadWriteOnce"]
         volumeMode: Filesystem
         resources:
