@@ -165,7 +165,8 @@ metadata:
   labels:
     app: aerospike
     component: sts
-    argocd.argoproj.io/sync-options: Delete=false
+  annotations:
+    # argocd.argoproj.io/sync-options: Delete=false
 spec:
   replicas: 2
   podManagementPolicy: OrderedReady
