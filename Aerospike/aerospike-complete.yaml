@@ -61,7 +61,7 @@ data:
       nsup-period 120
       storage-engine device {
         file /opt/aero/data.dat
-        filesize 2G
+        filesize 1G
         write-block-size 128K
       }
     }
