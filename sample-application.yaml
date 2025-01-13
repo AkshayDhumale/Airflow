@@ -51,12 +51,12 @@ spec:
   source:
     repoURL: https://github.com/AkshayDhumale/Airflow.git
     targetRevision: main
-    path: my-airflow
-    directory:
-      recurse: true            # Ensures all YAML files in subfolders are included
+    path: my-airflow/airflow
+    # directory:
+    #   recurse: true            # Ensures all YAML files in subfolders are included
     helm:
       valueFiles:
-        - airflow/override.yaml # Custom values file inside the airflow folder
+        - override.yaml # Custom values file inside the airflow folder
   destination:
     server: https://kubernetes.default.svc
     namespace: airflow
