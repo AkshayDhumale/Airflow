@@ -1,3 +1,46 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: airflow
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/AkshayDhumale/Airflow.git # Can point to either a Helm chart repo or a git repo.
+#     targetRevision: main # For Helm, this refers to the chart version.
+#     path: my-airflow # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+#     directory: 
+#       recurse: true
+#     helm:
+#       valueFiles:
+#         - override.yaml
+#       # parameters:
+#       #   - name: app
+#       #     value: app-develop
+
+#   # Destination cluster and namespace to deploy the application
+#   destination:
+#     # cluster API URL
+#     server: https://kubernetes.default.svc
+#     # or cluster name
+#     # name: in-cluster
+#     # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+#     namespace: airflow
+
+#   # Sync policy
+#   syncPolicy:
+#     syncOptions: # Sync options which modifies sync behavior
+#       - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
+#       - ApplyOutOfSyncOnly=true # Only sync out-of-sync resources, rather than applying every object in the application
+
+
+#     # # The retry feature is available since v1.7
+#     # retry:
+#     #   limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0
+#     #   backoff:
+#     #     duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+#     #     factor: 2 # a factor to multiply the base duration after each failed retry
+#     #     maxDuration: 3m # the maximum amount of time allowed for the backoff strategy
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,38 +49,18 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/AkshayDhumale/Airflow.git # Can point to either a Helm chart repo or a git repo.
-    targetRevision: main # For Helm, this refers to the chart version.
-    path: airflow # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
-    # directory: 
-    #   recurse: true
+    repoURL: https://github.com/AkshayDhumale/Airflow.git
+    targetRevision: main
+    path: my-airflow
+    directory:
+      recurse: true            # Ensures all YAML files in subfolders are included
     helm:
       valueFiles:
-        - override.yaml
-      # parameters:
-      #   - name: app
-      #     value: app-develop
-
-  # Destination cluster and namespace to deploy the application
+        - airflow/override.yaml # Custom values file inside the airflow folder
   destination:
-    # cluster API URL
     server: https://kubernetes.default.svc
-    # or cluster name
-    # name: in-cluster
-    # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
     namespace: airflow
-
-  # Sync policy
   syncPolicy:
-    syncOptions: # Sync options which modifies sync behavior
-      - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
-      - ApplyOutOfSyncOnly=true # Only sync out-of-sync resources, rather than applying every object in the application
-
-
-    # # The retry feature is available since v1.7
-    # retry:
-    #   limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0
-    #   backoff:
-    #     duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
-    #     factor: 2 # a factor to multiply the base duration after each failed retry
-    #     maxDuration: 3m # the maximum amount of time allowed for the backoff strategy
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
