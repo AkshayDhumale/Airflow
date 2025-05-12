@@ -51,7 +51,7 @@ spec:
   source:
     repoURL: https://github.com/AkshayDhumale/Airflow.git
     targetRevision: main
-    path: my-airflow/airflow
+    path: myairflow/airflow
     # directory:
     #   recurse: true            # Ensures all YAML files in subfolders are included
     helm:
