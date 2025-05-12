@@ -2,7 +2,7 @@
 images:
   airflow:
     repository: apache/airflow
-    tag: 2.10.5
+    tag: 3.0.0
 
 createUserJob:
   useHelmHooks: false
