@@ -15,14 +15,14 @@ migrateDatabaseJob:
   jobAnnotations:
     "argocd.argoproj.io/hook": Sync
     
-postgresql:
-  enabled: false
-# -> 2. add the detailes of your own postgresql database
-data:
-  metadataConnection:
-    user: airflow
-    pass: airflow
-    protocol: postgresql
-    host: airflow-postgres-hl.airflow.svc.cluster.local # service.namespace.svc.cluster.local
-    port: 5432
-    db: airflow
+# postgresql:
+#   enabled: false
+# # -> 2. add the detailes of your own postgresql database
+# data:
+#   metadataConnection:
+#     user: airflow
+#     pass: airflow
+#     protocol: postgresql
+#     host: airflow-postgres-hl.airflow.svc.cluster.local # service.namespace.svc.cluster.local
+#     port: 5432
+#     db: airflow
