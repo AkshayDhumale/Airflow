@@ -1,3 +1,9 @@
+# Images
+images:
+  airflow:
+    repository: apache/airflow
+    tag: 3.0.0 
+
 createUserJob:
   useHelmHooks: false
   applyCustomEnv: false
